@@ -16,10 +16,10 @@
           "device_id": "Device ID",
           "local_key": "Local key",
           "category": "Category code (e.g. \"dj\" for lights, \"jtmspro\" for locks)",
-          "product_id": "Product ID",
-          "device_name": "Device name"
+          "product_id": "Product ID (optional)",
+          "device_name": "Device name (optional)"
         },
-        "description": "Enter the device's local credentials directly. These can be extracted from the Tuya/Smart Life app data instead of logging into the Tuya cloud."
+        "description": "Enter the device's local credentials directly. Device ID, Local key and Category are required to connect. Product ID is optional; it only improves the displayed product name/icon and is not needed to control the device. These can be extracted from the Tuya/Smart Life app data instead of logging into the Tuya cloud."
       }
     }
   },

@@ -111,7 +111,7 @@ class TuyaBLEConfigFlow(ConfigFlow, domain=DOMAIN):
                     CONF_LOCAL_KEY: user_input[CONF_LOCAL_KEY],
                     CONF_UUID: user_input[CONF_DEVICE_ID],
                     CONF_CATEGORY: user_input[CONF_CATEGORY],
-                    CONF_PRODUCT_ID: user_input[CONF_PRODUCT_ID],
+                    CONF_PRODUCT_ID: user_input.get(CONF_PRODUCT_ID, ""),
                     CONF_DEVICE_NAME: user_input.get(CONF_DEVICE_NAME, ""),
                     CONF_PRODUCT_MODEL: user_input.get(CONF_DEVICE_NAME, ""),
                     CONF_PRODUCT_NAME: user_input.get(CONF_DEVICE_NAME, ""),
@@ -125,7 +125,7 @@ class TuyaBLEConfigFlow(ConfigFlow, domain=DOMAIN):
                     vol.Required(CONF_DEVICE_ID): str,
                     vol.Required(CONF_LOCAL_KEY): str,
                     vol.Required(CONF_CATEGORY): str,
-                    vol.Required(CONF_PRODUCT_ID): str,
+                    vol.Optional(CONF_PRODUCT_ID): str,
                     vol.Optional(CONF_DEVICE_NAME): str,
                 }
             ),
