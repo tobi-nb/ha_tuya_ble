@@ -14,7 +14,7 @@ from homeassistant.exceptions import ConfigEntryNotReady
 
 from .tuya_ble import TuyaBLEDevice
 
-from .cloud import HASSTuyaBLEDeviceManager
+from .cloud import LocalTuyaBLEDeviceManager
 from .const import DOMAIN
 from .devices import TuyaBLECoordinator, TuyaBLEData, get_device_product_info
 
@@ -24,6 +24,7 @@ PLATFORMS: list[Platform] = [
     Platform.NUMBER,
     Platform.SENSOR,
     Platform.BINARY_SENSOR,
+    Platform.LIGHT,
     Platform.SELECT,
     Platform.SWITCH,
     Platform.TEXT,
@@ -42,7 +43,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         raise ConfigEntryNotReady(
             f"Could not find Tuya BLE device with address {address}"
         )
-    manager = HASSTuyaBLEDeviceManager(hass, entry.options.copy())
+    manager = LocalTuyaBLEDeviceManager(hass, entry.options.copy())
     device = TuyaBLEDevice(manager, ble_device)
     await device.initialize()
     product_info = get_device_product_info(device)
@@ -110,6 +111,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
     if unload_ok := await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
         data: TuyaBLEData = hass.data[DOMAIN].pop(entry.entry_id)
+        data.coordinator.unregister()
         await data.device.stop()
 
     return unload_ok

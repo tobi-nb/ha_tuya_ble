@@ -3,28 +3,23 @@
     "abort": {
       "no_unconfigured_devices": "No unconfigured devices found."
     },
-    "error": {
-      "device_not_registered": "Device is not registered in Tuya cloud",
-      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
-      "login_error": "Login error ({code}): {msg}"
-    },
     "flow_title": "{name}",
     "step": {
-      "device": {
+      "user": {
         "data": {
           "address": "Tuya BLE device"
         },
-        "description": "Select Tuya BLE device to setup. Device must be registered in the cloud using the mobile application. It's better to unbind the device from Tuya Bluetooth gateway, if any."
+        "description": "Select Tuya BLE device to setup."
       },
-      "login": {
+      "credentials": {
         "data": {
-          "access_id": "Tuya IoT Access ID",
-          "access_secret": "Tuya IoT Access Secret",
-          "country_code": "Country",
-          "password": "[%key:common::config_flow::data::password%]",
-          "username": "Account"
+          "device_id": "Device ID",
+          "local_key": "Local key",
+          "category": "Category code (e.g. \"dj\" for lights, \"jtmspro\" for locks)",
+          "product_id": "Product ID",
+          "device_name": "Device name"
         },
-        "description": "Tuya BLE requires obtaining encryption key from Tuya cloud. Almost all devices only need to access the cloud once during setup.\n\nRefer to documentation of Tuya integration to retrive the cloud credentials https://www.home-assistant.io/integrations/tuya/\n\nEnter your Tuya credentials."
+        "description": "Enter the device's local credentials directly. These can be extracted from the Tuya/Smart Life app data instead of logging into the Tuya cloud."
       }
     }
   },
@@ -32,6 +27,9 @@
     "button": {
       "push": {
         "name": "Push"
+      },
+      "bluetooth_unlock": {
+        "name": "Unlock"
       }
     },
     "number": {
@@ -64,6 +62,12 @@
       },
       "countdown_duration": {
         "name": "Irrigation duration"
+      },
+      "countdown_duration_z1": {
+        "name": "Irrigation duration - Zone 1"
+      },
+      "countdown_duration_z2": {
+        "name": "Irrigation duration - Zone 2"
       }
     },
     "select": {
@@ -92,6 +96,9 @@
     "binary_sensor": {
       "low_battery": {
         "name": "[%key:component::sensor::entity_component::battery::name%]"
+      },
+      "lock_motor_state": {
+          "name": "Motor State"
       }
     },
     "sensor": {
@@ -156,6 +163,12 @@
       },
       "time_left": {
           "name": "Remaining irrigation time"
+      },
+      "use_time_z1": {
+          "name": "Last irrigation time - Zone 1"
+      },
+      "use_time_z2": {
+          "name": "Last irrigation time - Zone 2"
       }
     },
     "switch": {
@@ -206,30 +219,17 @@
       },            
       "water_valve": {
           "name": "Irrigation valve"
-      }    
+      },
+      "water_valve_z1": {
+          "name": "Irrigation valve - Zone 1"
+      },
+      "water_valve_z2": {
+          "name": "Irrigation valve - Zone 2"
+      }	  
     },
     "text": {
       "program": {
         "name": "Program: position[/time];..."
-      }
-    }
-  },
-  "options": {
-    "error": {
-      "device_not_registered": "Device is not registered in Tuya cloud",
-      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
-      "login_error": "Login error ({code}): {msg}"
-    },
-    "step": {
-      "login": {
-        "data": {
-          "access_id": "Tuya IoT Access ID",
-          "access_secret": "Tuya IoT Access Secret",
-          "country_code": "Country",
-          "password": "[%key:common::config_flow::data::password%]",
-          "username": "Account"
-        },
-        "description": "Refer to documentation of Tuya integration to retrive the cloud credentials https://www.home-assistant.io/integrations/tuya/\n\nEnter your Tuya credentials."
       }
     }
   }
